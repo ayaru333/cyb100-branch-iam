@@ -7,3 +7,19 @@ deploy:
 
   steps:
     - run: echo "Deploying to production..."
+jobs:
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      # your security steps here
+
+  deploy:
+    needs: security
+    runs-on: ubuntu-latest
+
+    environment:
+      name: production
+
+    steps:
+      - name: Deploy
+        run: echo "Deploying to production..."
